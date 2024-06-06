@@ -11,6 +11,7 @@ export const notasService = {
     listAll() { return fetch(API).then(handleStatus); },
     sumItems(code) { 
         const filterItems = partialize(filtersItemsByCode, code);
-        return this.listAll().then(sumItems(code)) 
+        return this.listAll()
+            .then(notas => sumItemsValue(filterItems(getItemsFromNotas(notas))));
     }
 }
