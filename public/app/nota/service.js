@@ -1,4 +1,5 @@
 import { handleStatus } from '../utils/promiseHelpers.js';
+import { partialize } from '../utils/operators.js';
 
 const API = 'http://localhost:3000/notas';
 
@@ -8,5 +9,8 @@ const sumItemsValue = items => items.reduce((total, item) => total + item.valor,
 
 export const notasService = {
     listAll() { return fetch(API).then(handleStatus); },
-    sumItems(code) { return this.listAll().then(sumItems(code)) }
+    sumItems(code) { 
+        const filterItems = partialize(filtersItemsByCode, code);
+        return this.listAll().then(sumItems(code)) 
+    }
 }
