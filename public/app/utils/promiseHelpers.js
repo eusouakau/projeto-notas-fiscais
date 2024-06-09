@@ -10,3 +10,6 @@ export const timeoutPromise = (milliseconds, promise) => {
         reject(`Limite da promise excedido (limite: ${milliseconds}ms)`), milliseconds));
     return Promise.race([timeout, promise]);
 }
+
+export const delay = milliseconds => data => new Promise((resolve, reject) => 
+    setTimeout(() => resolve(data), milliseconds));
